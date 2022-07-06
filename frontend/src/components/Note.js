@@ -4,8 +4,9 @@ import '../style/Note.css';
 export default function Note(props) {
 
   const noteTextUpdated = (event) => {
-    console.log(event.currentTarget.textContent, "textCHNAGED ")
+    props.onNoteUpdate(event.currentTarget.textContent)
   }
+
 
   return (
     <div className='note' >

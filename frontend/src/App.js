@@ -27,12 +27,17 @@ function App() {
   //   }
   // }
 
+  const updateNoteItem = (text) =>{
+   console.log(text,"Hey i am coming ")
+  }
+
   return (
     <div className="App">
       <div className="notes-list">
         {notesList.map((note,index) => {
          return <Note
          note={note}
+         onNoteUpdate={updateNoteItem}
          key={index}
          />
         })}
