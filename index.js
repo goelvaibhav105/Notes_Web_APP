@@ -12,35 +12,18 @@ app.get("/", (request, response) => {
     response.send("Hello world!");
   });
 
-  app.get("/info", (request, response) => {
-    const author = {
-        name:'Vaibhav',
-        designation:'UI Developer'
-    }
-    response.json(author);
-  });
-
-  app.get("/profiles", (request, response) => {
-    const authors = [{
-        name:'Vaibhav',
-        designation:'UI Developer'
+  app.get("/notes", (request, response) => {
+    const notes = [{
+        text:'Do Some Code',
+        link:'https://www.youtube.com/index'
     },
     {
-        name:'Vaibhav2',
-        designation:'UI Developer2'
+        name:'Take some rest',
+        designation:'https://www.youtube.com/index'
     }]
-    // below 3 are all correct 
-    // response.json({response:authors});
-    // response.json({authors:authors});
-    response.json({authors});
+    response.json({notes});
   });
 
-  app.get("/notes", (request, response) => {
-    response.send("Notes are coming fine ");
-  });
 
-//   http://localhost:5000/notes
-//   http://localhost:5000/info
-//   http://localhost:5000/
 
 
