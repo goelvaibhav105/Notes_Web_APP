@@ -5,8 +5,8 @@ export default function Note(props) {
 
   const noteTextUpdated = (event) => {
     const newTextValue = event.currentTarget.textContent;
-
-    props.onNoteUpdate({...props.note,text:newTextValue})
+    const updatedNoteObject = {...props.note,text:newTextValue || ''}
+    props.onNoteUpdate(updatedNoteObject)
   }
 
 
