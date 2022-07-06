@@ -12,6 +12,14 @@ app.get("/", (request, response) => {
     response.send("Hello world!");
   });
 
+  app.get("/info", (request, response) => {
+    const author = {
+        name:'Vaibhav',
+        designation:'UI Developer'
+    }
+    response.json(author);
+  });
+
   app.get("/notes", (request, response) => {
     response.send("Notes are coming fine ");
   });
