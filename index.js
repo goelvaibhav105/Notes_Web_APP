@@ -12,4 +12,8 @@ app.get("/", (request, response) => {
     response.send("Hello world!");
   });
 
+  app.get("/notes", (request, response) => {
+    response.send("Notes are coming fine ");
+  });
+
 
