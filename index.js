@@ -24,4 +24,8 @@ app.get("/", (request, response) => {
     response.send("Notes are coming fine ");
   });
 
+//   http://localhost:5000/notes
+//   http://localhost:5000/info
+//   http://localhost:5000/
+
 
