@@ -1,4 +1,5 @@
 import React from 'react'
+import '../style/Note.css';
 
 export default function Note(props) {
   return (

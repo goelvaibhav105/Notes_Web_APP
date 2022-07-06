@@ -33,6 +33,7 @@ function App() {
         {notesList.map((note,index) => {
          return <Note
          note={note}
+         key={index}
          />
         })}
       </div>
