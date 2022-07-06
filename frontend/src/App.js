@@ -12,7 +12,6 @@ function App() {
 
   useEffect(() => {
     const listFromStorageStr = localStorage.getItem("notess")
-    console.log(listFromStorageStr,"getItems")
     if(listFromStorageStr){
       const listFromStorageArr = JSON.parse(listFromStorageStr)
       setNotesList(listFromStorageArr)
@@ -22,11 +21,8 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log('saving to local storage ')
-    //Please note whatevr we stre in local storage has to be a string 
     if(notesList.length > 0 ){
       const  notesListString = JSON.stringify(notesList)
-      console.log(notesListString,"String")
       localStorage.setItem('notess',notesListString)
     }
   }, [notesList]);
