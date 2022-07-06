@@ -11,15 +11,25 @@ function App() {
   //so what happen when we set notes ... then it will go into a loopp which is then bypass by using a useEffect method
 
   useEffect(() => {
-    setNotesList(DUMMY_NOTES)
+    const listFromStorageStr = localStorage.getItem("notess")
+    console.log(listFromStorageStr,"getItems")
+    if(listFromStorageStr){
+      const listFromStorageArr = JSON.parse(listFromStorageStr)
+      setNotesList(listFromStorageArr)
+    }else{
+      setNotesList(DUMMY_NOTES)
+    } 
   }, [])
 
   useEffect(() => {
     console.log('saving to local storage ')
     //Please note whatevr we stre in local storage has to be a string 
-    const  notesListString = JSON.stringify(notesList)
-    localStorage.setItem('my-notes',notesListString)
-  }, [notesList])
+    if(notesList.length > 0 ){
+      const  notesListString = JSON.stringify(notesList)
+      console.log(notesListString,"String")
+      localStorage.setItem('notess',notesListString)
+    }
+  }, [notesList]);
 
 
 
