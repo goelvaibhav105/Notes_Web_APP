@@ -27,8 +27,8 @@ function App() {
   //   }
   // }
 
-  const updateNoteItem = (text) =>{
-   console.log(text,"Hey i am coming ")
+  const updateNoteItem = (updatedNote) =>{
+   console.log(updatedNote,"Hey i am coming ")
   }
 
   return (

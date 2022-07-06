@@ -4,7 +4,9 @@ import '../style/Note.css';
 export default function Note(props) {
 
   const noteTextUpdated = (event) => {
-    props.onNoteUpdate(event.currentTarget.textContent)
+    const newTextValue = event.currentTarget.textContent;
+
+    props.onNoteUpdate({...props.note,text:newTextValue})
   }
 
 
