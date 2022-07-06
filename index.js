@@ -20,6 +20,21 @@ app.get("/", (request, response) => {
     response.json(author);
   });
 
+  app.get("/profiles", (request, response) => {
+    const authors = [{
+        name:'Vaibhav',
+        designation:'UI Developer'
+    },
+    {
+        name:'Vaibhav2',
+        designation:'UI Developer2'
+    }]
+    // below 3 are all correct 
+    // response.json({response:authors});
+    // response.json({authors:authors});
+    response.json({authors});
+  });
+
   app.get("/notes", (request, response) => {
     response.send("Notes are coming fine ");
   });
