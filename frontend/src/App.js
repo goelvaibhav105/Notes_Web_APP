@@ -14,6 +14,14 @@ function App() {
     setNotesList(DUMMY_NOTES)
   }, [])
 
+  useEffect(() => {
+    console.log('saving to local storage ')
+    //Please note whatevr we stre in local storage has to be a string 
+    const  notesListString = JSON.stringify(notesList)
+    localStorage.setItem('my-notes',notesListString)
+  }, [notesList])
+
+
 
   // const getNotes = async () => {
   //   try {
