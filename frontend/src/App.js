@@ -28,7 +28,14 @@ function App() {
   // }
 
   const updateNoteItem = (updatedNote) =>{
-   console.log(updatedNote,"Hey i am coming ")
+   //map fnc will create the new array means updated array
+   const updatedList = notesList.map((noteItem)=>{
+     if(noteItem._id === updatedNote._id){
+      return updatedNote;
+     }
+     return noteItem;
+   })
+   setNotesList(updatedList)
   }
 
   return (
