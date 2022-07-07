@@ -54,6 +54,10 @@ function App() {
 
   return (
     <div className="App">
+      <div className='headerTop'>
+        <h3>Save Your Notes</h3>
+        <span>You can save anything you want</span>
+      </div>
       <div className="notes-list">
         {notesList.map((note,index) => {
          return <Note
