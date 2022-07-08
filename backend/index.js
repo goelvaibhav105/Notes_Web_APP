@@ -6,6 +6,10 @@ const port = 5000;
  // like this but whitelist the urls
 const cors = require('cors')
 
+// here we are defining router ok so we can use it 
+
+var router = express.Router()
+
 app.use(cors());
 
 
@@ -18,7 +22,10 @@ app.get("/", (request, response) => {
     response.send("Hello world!");
   });
 
-  app.get("/notes", (request, response) => {
+
+// here we are telling use route /notes and if /notes/ is there then run this 
+
+  router.get("/", (request, response) => {
     const notes = [{
         text:'Do Some Code',
         link:'https://www.youtube.com/index'
@@ -30,6 +37,24 @@ app.get("/", (request, response) => {
     response.json({notes});
   });
 
+  // here we are telling use route /notes and if /notes/note is there then run this 
+
+
+  router.get("/note", (request, response) => {
+    const note = [{
+        text:'Do Some Code',
+        link:'https://www.youtube.com/index'
+    },
+    ]
+    response.json({note});
+  });
+
+
+
+  // here we are telling our app that router is /notes means 
+   // when person go to app /notes then it will run what we define there go to see above 
+
+  app.use("/notes",router)
 
 
 
