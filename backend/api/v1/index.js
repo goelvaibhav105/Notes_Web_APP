@@ -1,10 +1,8 @@
+
+
 const express = require("express"); // importing express
 var notesRouter = express.Router();
-
-const mongoose = require("mongoose");
-const NoteModel = require('../../db/models/note.model')
-
-
+const NoteModel = require("../../db/models/note.model");
 
 /**
  * Get all notes {What is happening there lets see }
@@ -15,55 +13,72 @@ const NoteModel = require('../../db/models/note.model')
 //4 . Then we are returning some error if it is there a
 //5 Then in the response.json we are fetching all notes yehhhhhh!!!!!!!!!!!
 
- notesRouter.get("/", (request, response) => {
-    NoteModel.find({}, (err, notes) => {
-      if (err) {
-        return console.error(err);
-      }
-      response.json({
-        notes,
-        success:true
-      });
-    });
-  });
-
-
-  // try out post 
-
-  notesRouter.post("/", (request, response) => {
-      response.json({
-        reply:"Note Created "
-      });
-    });
-
-     // try out delete 
-
-  notesRouter.get("/:id", (request, response) => {
+notesRouter.get("/", (request, response) => {
+  NoteModel.find({}, (err, notes) => {
+    if (err) {
+      return console.error(err);
+    }
     response.json({
-      reply:"Note by id sucess"
+      notes,
     });
   });
+});
 
-   // get route by id  
-
-   notesRouter.delete("/:id", (request, response) => {
+/**
+ * Add a new note
+ */
+notesRouter.post("/", (request, response) => {
+  const newNote = new NoteModel(request.body);
+  newNote.save().then((savedNote) => {
     response.json({
-      reply:"Note Deleted "
+      note: savedNote,
+      success: true,
     });
   });
+});
 
-
-
-  // here we are telling use route /notes and if /notes/note is there then run this 
-
-
-  notesRouter.get("/note", (request, response) => {
-    const note = [{
-        text:'Do Some Code',
-        link:'https://www.youtube.com/index'
-    },
-    ]
-    response.json({note});
+/**
+ * Get a note by id
+ */
+notesRouter.get("/:id", (request, response) => {
+  const noteId = request.params.id;
+  NoteModel.findById(noteId, (err, note) => {
+    if (err) {
+      return console.log(err);
+    }
+    if (!note) {
+      return response.status(404).json({
+        message: "note not found",
+      });
+    }
+    response.json({
+      reply: "note by id success",
+      note,
+    });
   });
+});
 
-  module.exports = {notesRouter}
+/**
+ * Delete a note by id
+ */
+notesRouter.delete("/:id", (request, response) => {
+  const noteId = request.params.id;
+  NoteModel.findByIdAndRemove(noteId, (err, deletedNote) => {
+    if (err) {
+      return console.log(err);
+    }
+    if (!deletedNote) {
+      return response.status(404).json({
+        message: "note not found for deletion",
+      });
+    }
+    response.json({
+      reply: "delete note by id success",
+    });
+  });
+});
+
+
+module.exports = {
+  notesRouter,
+};
