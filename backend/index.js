@@ -10,6 +10,10 @@ var router = express.Router()
 const {notesRouter} = require( './api/v1/index' )
 //const {notesRouter} = require( './api/v1' )
 
+// importing db
+
+require('./db');
+
 app.use(cors());
 
 
