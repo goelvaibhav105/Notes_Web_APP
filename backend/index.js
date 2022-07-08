@@ -12,9 +12,17 @@ const {notesRouter} = require( './api/v1/index' )
 
 // importing db
 
+var bodyParser = require('body-parser')
+
 require('./db');
 
 app.use(cors());
+
+
+
+/// this pakage is required to parse the body things so that we can get it
+// and use it in post request delete and all 
+app.use(bodyParser.json());
 
 
 app.listen(port,()=>{
