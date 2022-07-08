@@ -22,7 +22,33 @@ const NoteModel = require('../../db/models/note.model')
       }
       response.json({
         notes,
+        success:true
       });
+    });
+  });
+
+
+  // try out post 
+
+  notesRouter.post("/", (request, response) => {
+      response.json({
+        reply:"Note Created "
+      });
+    });
+
+     // try out delete 
+
+  notesRouter.get("/:id", (request, response) => {
+    response.json({
+      reply:"Note by id sucess"
+    });
+  });
+
+   // get route by id  
+
+   notesRouter.delete("/:id", (request, response) => {
+    response.json({
+      reply:"Note Deleted "
     });
   });
 
