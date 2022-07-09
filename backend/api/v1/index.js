@@ -79,6 +79,37 @@ notesRouter.delete("/:id", (request, response) => {
 });
 
 
+/**
+ * Update note by Id
+ */
+ notesRouter.put("/:id", (request, response) => {
+  const noteId = request.params.id;
+  const updatedBody = request.body;
+  NoteModel.findByIdAndUpdate(
+    noteId,
+    updatedBody,
+    {
+      new: true,
+    },
+    (err, updatedNote) => {
+      if (err) {
+        return console.log(err);
+      }
+      if (!updatedNote) {
+        return response.status(404).json({
+          message: "note not found for updating",
+        });
+      }
+      response.json({
+        reply: "updated note by id success",
+        note: updatedNote,
+      });
+    }
+  );
+});
+
+
+
 module.exports = {
   notesRouter,
 };
