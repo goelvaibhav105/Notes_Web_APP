@@ -12,7 +12,6 @@ export default function Note(props) {
     const updatedNoteObject = {...props.note,text:newTextValue || ''}
     props.onNoteUpdate(updatedNoteObject)
   }
-  console.log(props.onNoteDelete,"onNoteDelete")
 
 
   return (

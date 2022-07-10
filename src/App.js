@@ -11,6 +11,8 @@ import {
   updateNote,
 } from "./services/notesService";
 
+import {UncontrolledTooltip} from 'reactstrap'
+
 import { Button, FloatingLabel, Modal, Form } from "react-bootstrap";
 
 
@@ -104,8 +106,13 @@ function App() {
         variant="dark"
         className="add-button"
         onClick={handleShowAddModal}
+        id='create-note'
       >
+
         <div className="add-button-text">+</div>
+        <UncontrolledTooltip placement="right" target="create-note">
+        Create Your Notes !!!
+      </UncontrolledTooltip>
       </Button>
 
       <Modal show={showAddNoteModal} onHide={handleCloseAddModal}>
