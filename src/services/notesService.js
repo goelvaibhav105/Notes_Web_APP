@@ -25,6 +25,7 @@ export const deleteNote = async (noteToDeleteId) => {
   try {
     const url = `${NOTES_API_URL}/${noteToDeleteId}`;
     const response = await axios.delete(url);
+    // reply is same we put in our backend api reposne that is delete note id  by success
     return response.data.reply;
   } catch (error) {
     console.error(error);

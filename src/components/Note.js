@@ -12,11 +12,20 @@ export default function Note(props) {
     const updatedNoteObject = {...props.note,text:newTextValue || ''}
     props.onNoteUpdate(updatedNoteObject)
   }
-  console.log(isFocused,"isFocused")
+  console.log(props.onNoteDelete,"onNoteDelete")
 
 
   return (
     <div className={isFocused ? "note note--focused" : "note"}>
+      <button
+        onClick={() => {
+          // passing the note so there we have id to delete 
+          props.onNoteDelete(props.note);
+        }}
+        type="button"
+        className="btn-close"
+        aria-label="Close"
+      ></button>
       <div className='note__text'
         onBlur={noteTextUpdated}
         onFocus={()=>{

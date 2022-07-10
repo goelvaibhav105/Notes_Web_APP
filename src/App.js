@@ -65,6 +65,15 @@ function App() {
     handleCloseAddModal();
   };
 
+  const deleteNoteItem = async (noteToDelete) => {
+    await deleteNote(noteToDelete._id);
+    // here we are filtering where id is not same ... means other one except this 
+    const remainingNotes = notesList.filter((noteItem) => {
+      return noteItem._id !== noteToDelete._id;
+    });
+    setNotesList(remainingNotes);
+  };
+
 
   const updateNoteItem = (updatedNote) =>{
    //map fnc will create the new array means updated array
@@ -136,7 +145,7 @@ function App() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div className='headerTop'>
+    <div className='headerTop'>
         <h3>Save Your Notes</h3>
         <span>You can save anything you want</span>
       </div>
@@ -145,6 +154,7 @@ function App() {
          return <Note
          note={note}
          onNoteUpdate={updateNoteItem}
+         onNoteDelete={deleteNoteItem}
          key={index}
          />
         })}
