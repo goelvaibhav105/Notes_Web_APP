@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 // connect to mongo atlas prod database
 
+
 const { DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME } =
   process.env;
 
