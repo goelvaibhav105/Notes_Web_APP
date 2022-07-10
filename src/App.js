@@ -1,8 +1,14 @@
 import './App.css';
 import axios from 'axios'
 import { useState, useEffect } from 'react';
-import DUMMY_NOTES from './DUMMY_NOTES';
+// import DUMMY_NOTES from './DUMMY_NOTES';
 import Note from './components/Note';
+import {
+  createNote,
+  deleteNote,
+  getNotes,
+  updateNote,
+} from "./services/notesService";
 
 
 function App() {
@@ -12,14 +18,15 @@ function App() {
 
   useEffect(() => {
     // const listFromStorageStr = localStorage.getItem("notess")
-    // if(listFromStorageStr){
-    //   const listFromStorageArr = JSON.parse(listFromStorageStr)
-    //   setNotesList(listFromStorageArr)
-    // }else{
-    //   setNotesList(DUMMY_NOTES)
-    // } 
-    getNotes();
+    getNotesFromServer();
   }, [])
+
+//creating a function where i can use async and await to call the notes from  backend 
+
+  const getNotesFromServer = async () => {
+    const notes = await getNotes();
+    setNotesList(notes);
+  };
 
   useEffect(() => {
     if(notesList.length > 0 ){
@@ -28,19 +35,6 @@ function App() {
     }
   }, [notesList]);
 
-
-
-  const getNotes = async () => {
-    try {
-      const response = await axios.get(
-        'https://notes-app-vaibhav.herokuapp.com/notes'
-      )
-      setNotesList(response.data.notes)
-      console.log('notesList',notesList,notesList.length);
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   const updateNoteItem = (updatedNote) =>{
    //map fnc will create the new array means updated array
@@ -60,7 +54,7 @@ function App() {
         <span>You can save anything you want</span>
       </div>
       <div className="notes-list">
-        {notesList.map((note,index) => {
+        {notesList && notesList.map((note,index) => {
          return <Note
          note={note}
          onNoteUpdate={updateNoteItem}
