@@ -74,17 +74,29 @@ function App() {
     setNotesList(remainingNotes);
   };
 
+  const updateNoteItem = async (updatedNote) => {
+    const noteFromServer = await updateNote(updatedNote);
+    // temporary variable
+    const updatedList = notesList.map((noteItem) => {
+      if (noteItem._id === noteFromServer._id) {
+        return noteFromServer;
+      }
+      return noteItem;
+    });
+    setNotesList(updatedList); // updating the state of notes list
+  };
+  
 
-  const updateNoteItem = (updatedNote) =>{
-   //map fnc will create the new array means updated array
-   const updatedList = notesList.map((noteItem)=>{
-     if(noteItem._id === updatedNote._id){
-      return updatedNote;
-     }
-     return noteItem;
-   })
-   setNotesList(updatedList)
-  }
+  // const updateNoteItem = (updatedNote) =>{
+  //  //map fnc will create the new array means updated array
+  //  const updatedList = notesList.map((noteItem)=>{
+  //    if(noteItem._id === updatedNote._id){
+  //     return updatedNote;
+  //    }
+  //    return noteItem;
+  //  })
+  //  setNotesList(updatedList)
+  // }
 
   return (
     <div className="App">
