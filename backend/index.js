@@ -9,6 +9,7 @@ var router = express.Router()
 
 //both below are correct 
 const {notesRouter} = require( './api/v1/index' )
+const {userRouter} = require( './api/v1/user' )
 //const {notesRouter} = require( './api/v1' )
 
 // importing db
@@ -38,6 +39,7 @@ app.get("/", (request, response) => {
 // taking the notes router from some other file and then using it .. 
 
   app.use("/notes",notesRouter)
+  app.use("/user",userRouter)
 
 
 
